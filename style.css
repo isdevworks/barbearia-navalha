@@ -1,0 +1,379 @@
+:root {
+  --bg: #f6f1e7;
+  --card: #fffdf8;
+  --tx: #1b1712;
+  --mut: #6d6455;
+  --ac: #a8761b;
+  --bd: #e0d6c2;
+  --ok: #2d7a46;
+  --warn: #b7791f;
+  --bad: #b3392f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121110;
+    --card: #1c1a17;
+    --tx: #f1ebdf;
+    --mut: #a39a89;
+    --ac: #d4a24c;
+    --bd: #33302a;
+    --ok: #5fc17d;
+    --warn: #e0b04f;
+    --bad: #e5766b;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121110;
+  --card: #1c1a17;
+  --tx: #f1ebdf;
+  --mut: #a39a89;
+  --ac: #d4a24c;
+  --bd: #33302a;
+  --ok: #5fc17d;
+  --warn: #e0b04f;
+  --bad: #e5766b;
+}
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.5;
+}
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  margin: 0;
+}
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Cabeçalho */
+header {
+  border-bottom: 1px solid var(--bd);
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  background: var(--bg);
+  z-index: 5;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 14px 12px;
+}
+.logo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--ac);
+  margin-left: 8px;
+}
+nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+nav button {
+  background: none;
+  border: 0;
+  color: var(--mut);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font:
+    600 14px Inter,
+    sans-serif;
+  cursor: pointer;
+}
+nav button.on {
+  background: var(--ac);
+  color: #fff;
+}
+
+/* Início */
+.hero {
+  padding: 48px 0 32px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: clamp(34px, 7vw, 56px);
+  font-weight: 800;
+}
+.hero p {
+  color: var(--mut);
+  max-width: 520px;
+  margin: 12px auto 22px;
+}
+
+/* Botões */
+.btn {
+  background: var(--ac);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font:
+    600 15px Inter,
+    sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn.sec {
+  background: transparent;
+  color: var(--tx);
+  border: 1px solid var(--bd);
+}
+.btn.sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+.btn.ok {
+  background: var(--ok);
+}
+.btn.bad {
+  background: var(--bad);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Páginas e cartões */
+section.pg {
+  display: none;
+  padding-bottom: 40px;
+}
+section.pg.on {
+  display: block;
+}
+h2 {
+  font-size: 28px;
+  margin: 28px 0 12px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  padding: 16px;
+}
+.svc {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+.svc b {
+  display: block;
+}
+.svc small {
+  color: var(--mut);
+}
+.price {
+  color: var(--ac);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ac);
+  margin-bottom: 6px;
+}
+
+/* Formulário e Input de Calendário */
+label {
+  display: block;
+  font-size: 13px;
+  color: var(--mut);
+  margin: 12px 0 4px;
+}
+input,
+textarea {
+  width: 100%;
+  background: var(--bg);
+  color: var(--tx);
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  padding: 10px;
+  font:
+    15px Inter,
+    sans-serif;
+}
+.input-date {
+  width: 100%;
+  background: var(--bg);
+  color: var(--tx);
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  padding: 10px;
+  font:
+    15px Inter,
+    sans-serif;
+  cursor: pointer;
+}
+.opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.opt {
+  border: 1px solid var(--bd);
+  background: var(--card);
+  color: var(--tx);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font:
+    14px Inter,
+    sans-serif;
+  cursor: pointer;
+}
+.opt.on {
+  border-color: var(--ac);
+  background: var(--ac);
+  color: #fff;
+}
+.opt:disabled {
+  opacity: 0.35;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* Agendamentos, status e chat */
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 99px;
+  border: 1px solid currentColor;
+}
+.pendente {
+  color: var(--warn);
+}
+.confirmado {
+  color: var(--ok);
+}
+.recusado,
+.cancelado {
+  color: var(--bad);
+}
+.concluído {
+  color: var(--mut);
+}
+.bk {
+  margin-bottom: 12px;
+}
+.bk .top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chat {
+  margin-top: 10px;
+  border-top: 1px dashed var(--bd);
+  padding-top: 10px;
+}
+.msg {
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin: 4px 0;
+  max-width: 85%;
+  font-size: 14px;
+  background: var(--bg);
+  border: 1px solid var(--bd);
+}
+.msg.dono {
+  border-color: var(--ac);
+}
+.msg.cli {
+  margin-left: auto;
+}
+.msg i {
+  display: block;
+  font-size: 11px;
+  color: var(--mut);
+  font-style: normal;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.row input {
+  flex: 1;
+}
+.acts {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Painel do dono */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.stats .card {
+  text-align: center;
+}
+.stats b {
+  font-size: 26px;
+  display: block;
+  color: var(--ac);
+}
+
+/* Outros & Rodapé Ajustado */
+.note {
+  color: var(--mut);
+  font-size: 13px;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  background: var(--ok);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  display: none;
+  z-index: 9;
+}
+footer {
+  border-top: 1px solid var(--bd);
+  padding: 40px 0;
+  margin-top: 40px;
+  text-align: center;
+  color: var(--mut);
+  font-size: 13px;
+}

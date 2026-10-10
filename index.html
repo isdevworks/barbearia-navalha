@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Barbearia Navalha de Ouro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Script do Supabase adicionado abaixo para o JavaScript funcionar -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <span class="logo">✂ Navalha de Ouro</span>
+        <nav id="nav">
+          <button data-p="home" class="on">Início</button
+          ><button data-p="servicos">Serviços</button
+          ><button data-p="agendar">Agendar</button
+          ><button data-p="meus">Meus agendamentos</button>
+          <a
+            href="admin.html"
+            class="btn sm sec"
+            style="
+              text-decoration: none;
+              display: inline-flex;
+              align-items: center;
+            "
+            >Área do Dono</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="pg on" id="home">
+        <div class="hero">
+          <h1>Estilo clássico,<br />precisão de mestre.</h1>
+          <p>
+            Cortes, barba e coloração com hora marcada. Escolha o serviço, o
+            horário e receba a confirmação do barbeiro.
+          </p>
+          <button class="btn" onclick="go('agendar')">Agendar horário</button>
+          <button class="btn sec" onclick="go('servicos')">
+            Ver serviços e preços
+          </button>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">Horário</span><b>Seg a Sáb, 9h às 19h</b>
+            <div class="note">Domingo fechado</div>
+          </div>
+          <div class="card">
+            <span class="tag">Endereço</span><b>Rua das Tesouras, 123</b>
+            <div class="note">Centro</div>
+          </div>
+          <div class="card">
+            <span class="tag">Contato</span><b>(71) 9 9999-9999</b>
+            <div class="note">Ou fale pelo chat no seu agendamento</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pg" id="servicos">
+        <h2>Cortes e barba</h2>
+        <div class="grid" id="gCortes"></div>
+        <h2>Pintura e coloração</h2>
+        <div class="grid" id="gCor"></div>
+      </section>
+
+      <section class="pg" id="agendar">
+        <h2>Agendar horário</h2>
+        <div class="card">
+          <label>1. Serviços (Pode selecionar vários)</label>
+          <div class="opts" id="oSvc"></div>
+
+          <label>2. Data (Clique para abrir o calendário)</label>
+          <input type="date" id="dataInput" class="input-date" />
+
+          <label>3. Horário</label>
+          <div class="opts" id="oHora"></div>
+
+          <label>4. Seu nome</label>
+          <input id="nome" maxlength="60" placeholder="Nome completo" />
+
+          <label>5. WhatsApp</label>
+          <input
+            id="tel"
+            maxlength="20"
+            inputmode="tel"
+            placeholder="(71) 9 9999-9999"
+          />
+          <div style="margin-top: 16px">
+            <div id="resumo" class="note" style="margin-bottom: 10px"></div>
+            <button class="btn" id="enviar">Solicitar agendamento</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="pg" id="meus">
+        <h2>Meus agendamentos</h2>
+        <div id="listaMeus"></div>
+        <p class="note">
+          Os agendamentos ficam guardados neste aparelho. O barbeiro confirma ou
+          recusa e você acompanha por aqui.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      © Barbearia Navalha de Ouro · Desenvolvido por <b>IsDevWorks</b>
+    </footer>
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

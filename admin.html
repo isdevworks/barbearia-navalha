@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Painel do Dono - Barbearia Navalha de Ouro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Script do Supabase adicionado abaixo para o JavaScript funcionar -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <span class="logo">✂ Painel Administrativo</span>
+        <nav>
+          <a
+            href="index.html"
+            class="btn sm sec"
+            style="
+              text-decoration: none;
+              display: inline-flex;
+              align-items: center;
+            "
+            >Ver Site do Cliente</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap" style="padding-top: 24px">
+      <h2>Painel do dono</h2>
+      <div class="stats" id="stats"></div>
+      <div class="opts" id="filtros" style="margin-bottom: 16px"></div>
+      <div id="listaDono"></div>
+    </main>
+
+    <footer>
+      © Barbearia Navalha de Ouro · Desenvolvido por <b>IsDevWorks</b>
+    </footer>
+    <div class="toast" id="toast"></div>
+    <script src="admin.js"></script>
+  </body>
+</html>
