@@ -57,14 +57,12 @@
     <script>
       function verificarLogin() {
         const senhaDigitada = document.getElementById("senhaAdmin").value;
-        // Aqui tu defines a tua senha secreta:
         const senhaCorreta = "navalha2026";
 
         if (senhaDigitada === senhaCorreta) {
-          // Guarda uma "chave" no navegador do dono
           localStorage.setItem("barbergold_autenticado", "sim");
-          // Redireciona para o painel
-          window.location.href = "admin.html";
+          // Redireciona para a URL limpa do admin
+          window.location.href = "/admin";
         } else {
           document.getElementById("erro-senha").style.display = "block";
         }

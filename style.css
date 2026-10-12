@@ -90,6 +90,7 @@ h3,
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text; /* <--- Adiciona esta linha aqui */
   -webkit-text-fill-color: transparent;
   animation: brilhoMetalico 4s linear infinite;
   margin: 0;

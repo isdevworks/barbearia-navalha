@@ -1,11 +1,11 @@
 // CADEADO DE SEGURANÇA
 if (localStorage.getItem("barbergold_autenticado") !== "sim") {
-  window.location.href = "login_admin.html";
+  window.location.href = "/login";
 }
 
 function fazerLogout() {
   localStorage.removeItem("barbergold_autenticado");
-  window.location.href = "login_admin.html";
+  window.location.href = "/login";
 }
 
 // --- CONFIGURAÇÃO DO SUPABASE ---
