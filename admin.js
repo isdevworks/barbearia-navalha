@@ -1,14 +1,13 @@
 // CADEADO DE SEGURANÇA
-// Se o navegador não tiver a chave de autenticação, é expulso para o login
 if (localStorage.getItem("barbergold_autenticado") !== "sim") {
-  window.location.href = "login.html";
+  window.location.href = "login_admin.html";
 }
 
-// Função para o dono sair do painel (opcional, podes ligar a um botão "Sair")
 function fazerLogout() {
   localStorage.removeItem("barbergold_autenticado");
-  window.location.href = "login.html";
+  window.location.href = "login_admin.html";
 }
+
 // --- CONFIGURAÇÃO DO SUPABASE ---
 const SUPABASE_URL = "https://roxxpmhmzpcauaeitfna.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_fDOYxr3c7dhiayuLGTxJ7g_UFfiJuK7";
@@ -113,6 +112,7 @@ function renderAdmin() {
     const L = globalBookingsAdmin
       .filter((b) => filtro === "todos" || b.status === filtro)
       .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+
     listaDono.innerHTML = L.length
       ? L.map(
           (b) => `
@@ -123,6 +123,12 @@ function renderAdmin() {
               ${b.status === "confirmado" ? `<button class="btn sm" data-st="concluído" data-id="${b.id}">Marcar concluído</button> <button class="btn bad sm" data-st="cancelado" data-id="${b.id}">Faltou / Cancelar</button>` : ""}
             </div>
             ${chatHtmlAdmin(b)}
+            
+            <!-- Botões de Exclusão e Limpeza -->
+            <div class="acts" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #333; display: flex; gap: 10px;">
+              <button class="btn sec sm" data-del-chat="${b.id}">🧹 Limpar Conversa</button>
+              <button class="btn bad sm" data-del-booking="${b.id}">🗑️ Excluir Agendamento</button>
+            </div>
           </div>
         `,
         ).join("")
@@ -132,10 +138,41 @@ function renderAdmin() {
 
 document.addEventListener("click", async (e) => {
   const t = e.target;
+
   if (t.dataset.f) {
     filtro = t.dataset.f;
     renderAdmin();
   }
+
+  // AÇÃO: Apagar Chat
+  if (t.dataset.delChat) {
+    if (
+      confirm(
+        "Tem certeza que deseja limpar APENAS a conversa deste agendamento? O serviço será mantido.",
+      )
+    ) {
+      const id = t.dataset.delChat;
+      const { error } = await _supabase
+        .from("bookings")
+        .update({ messages: [] })
+        .eq("id", id);
+      if (!error) toast("Conversa limpa com sucesso!");
+    }
+  }
+
+  // AÇÃO: Apagar Todo o Agendamento
+  if (t.dataset.delBooking) {
+    if (
+      confirm(
+        "ATENÇÃO: Deseja excluir este agendamento definitivamente do banco de dados?",
+      )
+    ) {
+      const id = t.dataset.delBooking;
+      const { error } = await _supabase.from("bookings").delete().eq("id", id);
+      if (!error) toast("Agendamento excluído com sucesso!");
+    }
+  }
+
   if (t.dataset.st) {
     const id = t.dataset.id;
     const statusNovo = t.dataset.st;
@@ -143,7 +180,6 @@ document.addEventListener("click", async (e) => {
     if (b) {
       let msgs = b.messages || [];
 
-      // Lógica de mensagens automáticas baseada no novo status
       if (
         statusNovo === "confirmado" ||
         statusNovo === "recusado" ||
@@ -175,6 +211,7 @@ document.addEventListener("click", async (e) => {
       if (!error) fetchAdminBookings();
     }
   }
+
   if (t.dataset.sendAdmin) {
     const id = t.dataset.sendAdmin;
     const inp = document.querySelector(`input[data-chat-admin="${id}"]`);
