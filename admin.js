@@ -1,3 +1,14 @@
+// CADEADO DE SEGURANÇA
+// Se o navegador não tiver a chave de autenticação, é expulso para o login
+if (localStorage.getItem("barbergold_autenticado") !== "sim") {
+  window.location.href = "login.html";
+}
+
+// Função para o dono sair do painel (opcional, podes ligar a um botão "Sair")
+function fazerLogout() {
+  localStorage.removeItem("barbergold_autenticado");
+  window.location.href = "login.html";
+}
 // --- CONFIGURAÇÃO DO SUPABASE ---
 const SUPABASE_URL = "https://roxxpmhmzpcauaeitfna.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_fDOYxr3c7dhiayuLGTxJ7g_UFfiJuK7";

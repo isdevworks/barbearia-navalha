@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - BarberGold</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂</text></svg>"
+    />
+    <style>
+      /* Estilo rápido e elegante para a caixa de login */
+      .login-box {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 30px;
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        text-align: center;
+        color: white;
+        font-family: sans-serif;
+      }
+      .login-box input {
+        width: 90%;
+        padding: 10px;
+        margin: 15px 0;
+        border-radius: 4px;
+        border: none;
+      }
+      .login-box button {
+        width: 100%;
+        padding: 12px;
+        background-color: #d4af37;
+        color: black;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #erro-senha {
+        color: #ff4c4c;
+        display: none;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <h2>Acesso do Admin</h2>
+      <p>Insira a senha para gerir a barbearia</p>
+      <input type="password" id="senhaAdmin" placeholder="Senha de acesso" />
+      <button onclick="verificarLogin()">Entrar no Painel</button>
+      <p id="erro-senha">Senha incorreta. Tente novamente.</p>
+    </div>
+
+    <script>
+      function verificarLogin() {
+        const senhaDigitada = document.getElementById("senhaAdmin").value;
+        // Aqui tu defines a tua senha secreta:
+        const senhaCorreta = "navalha2026";
+
+        if (senhaDigitada === senhaCorreta) {
+          // Guarda uma "chave" no navegador do dono
+          localStorage.setItem("barbergold_autenticado", "sim");
+          // Redireciona para o painel
+          window.location.href = "admin.html";
+        } else {
+          document.getElementById("erro-senha").style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
